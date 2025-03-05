@@ -33,7 +33,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+    	
+        httpSecurity
+     // CSRF protection is disabled because we use JWT, which is stateless
+        		.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(customAccessDenialHandler)
@@ -41,9 +44,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/insights/**").permitAll()
+//                        .requestMatchers("/insights/**").permitAll()
                         .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/trans/**").permitAll()
+//                        .requestMatchers("/trans/**").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
                         .anyRequest().authenticated()
                 )

@@ -29,6 +29,6 @@ public class Response {
 
     public void setFirstLogin(boolean firstLogin) {
         this.isFirstLogin = firstLogin;
-    }
+    }   
 
 }

@@ -1,0 +1,97 @@
+package com.rms.security;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+
+import com.rms.security.AuthFilter;
+import com.rms.security.CustomUserDetailsService;
+import com.rms.security.JwtUtils;
+
+import java.io.IOException;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class AuthFilterTest {
+
+    @Mock
+    private JwtUtils jwtUtils;
+    
+    @Mock
+    private CustomUserDetailsService customUserDetailsService;
+    
+    @Mock
+    private HttpServletRequest request;
+    
+    @Mock
+    private HttpServletResponse response;
+    
+    @Mock
+    private FilterChain filterChain;
+    
+    @Mock
+    private UserDetails userDetails;
+    
+    @InjectMocks
+    private AuthFilter authFilter;
+
+    @BeforeEach
+    void setUp() {
+        SecurityContextHolder.clearContext();
+    }
+
+    @Test
+    void testDoFilterInternal_ValidToken() throws ServletException, IOException {
+        String token = "validToken";
+        String email = "user@example.com";
+        
+        when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+        when(jwtUtils.extractUsername(token)).thenReturn(email);
+        when(customUserDetailsService.loadUserByUsername(email)).thenReturn(userDetails);
+        when(jwtUtils.validateToken(token, userDetails)).thenReturn(true);
+        when(userDetails.getAuthorities()).thenReturn(null);
+        
+        authFilter.doFilterInternal(request, response, filterChain);
+        
+        verify(jwtUtils).extractUsername(token);
+        verify(customUserDetailsService).loadUserByUsername(email);
+        verify(jwtUtils).validateToken(token, userDetails);
+        verify(filterChain).doFilter(request, response);
+    }
+
+    @Test
+    void testDoFilterInternal_InvalidToken() throws ServletException, IOException {
+        String token = "invalidToken";
+        
+        when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+        when(jwtUtils.extractUsername(token)).thenReturn(null);
+        
+        authFilter.doFilterInternal(request, response, filterChain);
+        
+        verify(jwtUtils).extractUsername(token);
+        verify(filterChain).doFilter(request, response);
+        verifyNoInteractions(customUserDetailsService);
+    }
+
+    @Test
+    void testDoFilterInternal_NoToken() throws ServletException, IOException {
+        when(request.getHeader("Authorization")).thenReturn(null);
+        
+        authFilter.doFilterInternal(request, response, filterChain);
+        
+        verify(filterChain).doFilter(request, response);
+        verifyNoInteractions(jwtUtils, customUserDetailsService);
+    }
+}

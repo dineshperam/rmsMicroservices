@@ -44,7 +44,7 @@ public class Partnership {
 	private Date endDate;
 	
 	@Column(name="duration_months")
-	private int durationMonths;
+	private Integer durationMonths;
 	
 	
 }

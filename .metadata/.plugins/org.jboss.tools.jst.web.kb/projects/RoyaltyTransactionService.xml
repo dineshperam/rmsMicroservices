@@ -10,6 +10,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar"/>
+  <path value="C:/Users/Dinesh.Peram/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/commons-jxpath/commons-jxpath/1.3/commons-jxpath-1.3.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/boot/spring-boot/3.4.2/spring-boot-3.4.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/com/netflix/spectator/spectator-api/1.7.3/spectator-api-1.7.3.jar"/>
@@ -17,6 +18,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/data/spring-data-commons/3.4.2/spring-data-commons-3.4.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/spring-core/6.2.2/spring-core-6.2.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/com/netflix/netflix-commons/netflix-eventbus/0.3.0/netflix-eventbus-0.3.0.jar"/>
+  <path value="C:/Users/Dinesh.Peram/.m2/repository/org/sonarsource/scanner/maven/sonar-maven-plugin/3.8.0.2131/sonar-maven-plugin-3.8.0.2131.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar"/>
@@ -49,6 +51,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.78.1/bcprov-jdk18on-1.78.1.jar"/>
+  <path value="C:/Users/Dinesh.Peram/.m2/repository/org/sonatype/plexus/plexus-sec-dispatcher/1.4/plexus-sec-dispatcher-1.4.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/boot/spring-boot-starter/3.4.2/spring-boot-starter-3.4.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.3.2/httpcore5-h2-5.3.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/boot/spring-boot-devtools/3.4.2/spring-boot-devtools-3.4.2.jar"/>
@@ -68,6 +71,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/spring-context-support/6.2.2/spring-context-support-6.2.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/assertj/assertj-core/3.26.3/assertj-core-3.26.3.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar"/>
+  <path value="C:/Users/Dinesh.Peram/.m2/repository/org/sonarsource/scanner/api/sonar-scanner-api/2.16.0.226/sonar-scanner-api-2.16.0.226.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/com/netflix/eureka/eureka-client/2.0.4/eureka-client-2.0.4.jar"/>
@@ -138,6 +142,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/spring-jcl/6.2.2/spring-jcl-6.2.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.4.2/spring-boot-starter-json-3.4.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/cloud/spring-cloud-netflix-eureka-client/4.2.0/spring-cloud-netflix-eureka-client-4.2.0.jar"/>
+  <path value="C:/Users/Dinesh.Peram/.m2/repository/org/codehaus/plexus/plexus-utils/3.2.1/plexus-utils-3.2.1.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/springframework/cloud/spring-cloud-context/4.2.0/spring-cloud-context-4.2.0.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
   <path value="C:/Users/Dinesh.Peram/.m2/repository/commons-configuration/commons-configuration/1.10/commons-configuration-1.10.jar"/>
@@ -163,10 +168,11 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar"/>
  </paths>
  <validation>
+  <core validator-id="jboss.cdi.core"/>
   <el>
-   <linked-el length="23" name="%0" offset="3091" path="%1"/>
-   <linked-el length="23" name="%2" offset="3091" path="%1"/>
-   <linked-el length="23" name="%3" offset="3091" path="%1"/>
+   <linked-el length="23" name="%0" offset="3348" path="%1"/>
+   <linked-el length="23" name="%2" offset="3348" path="%1"/>
+   <linked-el length="23" name="%3" offset="3348" path="%1"/>
   </el>
  </validation>
  <aliases>

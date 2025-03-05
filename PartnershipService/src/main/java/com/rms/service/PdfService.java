@@ -41,18 +41,23 @@ public class PdfService {
             contentStream.setFont(PDType1Font.HELVETICA, 12);
             int yPosition = 700;
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            
+            String startDate = (partnership.getStartDate() != null) ? sdf.format(partnership.getStartDate()) : "N/A";
+            String endDate = (partnership.getEndDate() != null) ? sdf.format(partnership.getEndDate()) : "N/A";
 
             String[] details = {
-                "Partnership ID: " + partnership.getPartnershipId(),
-                "Artist ID: " + partnership.getArtistId(),
-                "Manager ID: " + partnership.getManagerId(),
-                "Status: " + partnership.getStatus(),
-                "Percentage: " + partnership.getPercentage() + "%",
-                "Comments: " + (partnership.getComments() != null ? partnership.getComments() : "N/A"),
-                "Start Date: " + sdf.format(partnership.getStartDate()),
-                "End Date: " + sdf.format(partnership.getEndDate()),
-                "Duration: " + partnership.getDurationMonths() + " months"
-            };
+            	    "Partnership ID: " + partnership.getPartnershipId(),
+            	    "Artist ID: " + partnership.getArtistId(),
+            	    "Manager ID: " + partnership.getManagerId(),
+            	    "Status: " + partnership.getStatus(),
+            	    "Percentage: " + partnership.getPercentage() + "%",
+            	    "Comments: " + (partnership.getComments() != null ? partnership.getComments() : "N/A"),
+            	    "Start Date: " + startDate,
+            	    "End Date: " + endDate,
+            	    "Duration: " + (partnership.getDurationMonths() != null ? partnership.getDurationMonths() + " months" : "N/A")
+            	};
+            
+
 
             for (String detail : details) {
                 contentStream.beginText();

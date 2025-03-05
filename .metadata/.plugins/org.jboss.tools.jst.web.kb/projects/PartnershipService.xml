@@ -163,6 +163,7 @@
   <path value="C:/Users/Dinesh.Peram/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar"/>
  </paths>
  <validation>
+  <core validator-id="jboss.cdi.core"/>
   <el>
    <linked-el length="23" name="%0" offset="3069" path="%1"/>
    <linked-el length="23" name="%2" offset="3069" path="%1"/>

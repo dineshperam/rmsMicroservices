@@ -15,6 +15,7 @@ import com.rms.exeptions.NotFoundException;
 import com.rms.model.UserDetails;
 import com.rms.repository.UserDetailsRepository;
 import com.rms.security.JwtUtils;
+import com.rms.service.EmailService;
 import com.rms.service.UserDetailsService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +38,9 @@ class UserDetailsServiceTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+    
+    @Mock
+    private EmailService emailService;
 
     @Mock
     private JwtUtils jwtUtils;

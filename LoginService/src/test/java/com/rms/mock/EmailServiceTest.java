@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,7 +26,9 @@ class EmailServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        doNothing().when(mailSender).send(any(SimpleMailMessage.class));  //  Prevents actual email sending
     }
+
 
     @Test
     void testSendOtpEmail_Success() {
@@ -88,10 +91,15 @@ class EmailServiceTest {
     }
 
     @Test
-    void testSendWelcomeEmail_InvalidRole_DefaultsToManager() {
+    void testSendWelcomeEmail_InvalidRole_DefaultsToValuedMember() {
         String to = "test@example.com";
         emailService.sendWelcomeEmail(to, "John", "john_doe", "UnknownRole", "test@example.com", "secure123");
-        verify(mailSender, times(1)).send(any(SimpleMailMessage.class));
+        verify(mailSender, times(1)).send(any(SimpleMailMessage.class));  //  Ensures email is still sent
+    }
+    
+    @Test
+    void testSendWelcomeEmail_FailsWhenRecipientMissing() {
+        assertThrows(NotFoundException.class, () -> emailService.sendWelcomeEmail(null, "John", "john_doe", "Artist", "test@example.com", "secure123"));
     }
 
     @Test
@@ -126,5 +134,72 @@ class EmailServiceTest {
 
         emailService.sendEmail(message);
         verify(mailSender, times(1)).send(any(SimpleMailMessage.class));
+    }
+    
+    @Test
+    void testSendPaymentReceivedEmail() {
+        String to = "artist@example.com";
+        String name = "John Doe";
+        double amount = 500.75;
+
+        emailService.sendPaymentReceivedEmail(to, name, amount);
+
+        verifyEmailSent(to, "Royalty Payment Received", "Greetings, " + name);
+    }
+
+    @Test
+    void testSendPaymentSentEmail() {
+        String to = "manager@example.com";
+        String name = "Jane Smith";
+        double amount = 300.50;
+        String recipientName = "John Doe";
+
+        emailService.sendPaymentSentEmail(to, name, amount, recipientName);
+
+        verifyEmailSent(to, "Royalty Payment Sent", "Dear " + name);
+    }
+
+    @Test
+    void testSendPartnershipRequestEmail() {
+        String to = "manager@example.com";
+        String managerName = "Jane Smith";
+        String artistName = "John Doe";
+
+        emailService.sendPartnershipRequestEmail(to, managerName, artistName);
+
+        verifyEmailSent(to, "New Partnership Request - Action Required", "Dear " + managerName);
+    }
+
+    @Test
+    void testSendPartnershipResponseEmail_Accepted() {
+        String to = "artist@example.com";
+        String artistName = "John Doe";
+        String managerName = "Jane Smith";
+
+        emailService.sendPartnershipResponseEmail(to, artistName, managerName, true);
+
+        verifyEmailSent(to, "Partnership Request Accepted 🎉", "Hey " + artistName);
+    }
+
+    @Test
+    void testSendPartnershipResponseEmail_Declined() {
+        String to = "artist@example.com";
+        String artistName = "John Doe";
+        String managerName = "Jane Smith";
+
+        emailService.sendPartnershipResponseEmail(to, artistName, managerName, false);
+
+        verifyEmailSent(to, "Partnership Request Declined ❌", "Hi " + artistName);
+    }
+
+    private void verifyEmailSent(String to, String subject, String expectedBodyStart) {
+        ArgumentCaptor<SimpleMailMessage> messageCaptor = ArgumentCaptor.forClass(SimpleMailMessage.class);
+        verify(mailSender, times(1)).send(messageCaptor.capture());
+
+        SimpleMailMessage sentMessage = messageCaptor.getValue();
+        assertNotNull(sentMessage);
+        assertEquals(to, sentMessage.getTo()[0]);
+        assertEquals(subject, sentMessage.getSubject());
+        assertTrue(sentMessage.getText().startsWith(expectedBodyStart), "Email body does not match expected content");
     }
 }

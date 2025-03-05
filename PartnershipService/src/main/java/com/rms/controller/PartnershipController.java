@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.rms.exeptions.InvalidPartnershipRequestException;
 import com.rms.exeptions.NotFoundException;
 import com.rms.model.Partnership;
+import com.rms.repository.PartnershipRepository;
 import com.rms.service.PartnershipService;
 import com.rms.service.PdfService;
 
@@ -26,6 +27,7 @@ public class PartnershipController {
 
     
     private final PartnershipService partnershipService;
+    private final PartnershipRepository partnershipRepository;
     
     
     private final PdfService pdfService;
@@ -43,9 +45,9 @@ public class PartnershipController {
     }
 
     @GetMapping("/showbyID/{id}")
-    public ResponseEntity<Partnership> getPartnershipById(@PathVariable int id) {
-        Partnership partnership = partnershipService.getPartnershipById(id);
-        return ResponseEntity.ok(partnership);
+    public Partnership getPartnershipById(@PathVariable int id) {
+    	return partnershipRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Partnership not found with ID: " + id));
     }
     
     @GetMapping("/latest/{artistId}")
@@ -125,4 +127,10 @@ public class PartnershipController {
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new NotFoundException("No pending request found for artist ID: " + artistId));
     }
+    
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
 }

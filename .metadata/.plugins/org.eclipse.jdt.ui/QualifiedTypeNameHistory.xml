@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.lang.System.Logger"/>
-    <fullyQualifiedTypeName name="com.rms.service.EmailService"/>
     <fullyQualifiedTypeName name="com.rms.model.UserDetails"/>
     <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="com.rms.service.EmailService"/>
+    <fullyQualifiedTypeName name="com.rms.controller.UserDetailsController"/>
+    <fullyQualifiedTypeName name="org.mockito.ArgumentCaptor"/>
+    <fullyQualifiedTypeName name="com.rms.service.OtpService"/>
+    <fullyQualifiedTypeName name="com.rms.security.JwtUtils"/>
+    <fullyQualifiedTypeName name="com.rms.security.CustomUserDetailsService"/>
+    <fullyQualifiedTypeName name="com.rms.security.AuthFilter"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.PropertySource"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+    <fullyQualifiedTypeName name="java.security.SecureRandom"/>
+    <fullyQualifiedTypeName name="org.springframework.test.util.ReflectionTestUtils"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.rms.controller.PartnershipController"/>
+    <fullyQualifiedTypeName name="com.rms.service.PdfService"/>
+    <fullyQualifiedTypeName name="org.apache.pdfbox.pdmodel.PDDocument"/>
+    <fullyQualifiedTypeName name="org.mockito.Mock"/>
+    <fullyQualifiedTypeName name="org.apache.pdfbox.pdmodel.PDPage"/>
+    <fullyQualifiedTypeName name="org.apache.pdfbox.pdmodel.PDPageContentStream"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="org.mockito.Spy"/>
+    <fullyQualifiedTypeName name="com.rms.repository.PartnershipRepository"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
 </qualifiedTypeNameHistroy>

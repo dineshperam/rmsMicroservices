@@ -5,6 +5,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +18,12 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
+@PropertySource("classpath:application.properties")
 public class JwtUtils {
-	 public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-	    public String generateToken(String email) {
+	@Value("${jwt.secret}")
+    private String secret;	    
+	
+	public String generateToken(String email) {
 	        Map<String, Object> claims = new HashMap<>();
 	        return createToken(claims, email);
 	    }
@@ -32,7 +38,7 @@ public class JwtUtils {
 	    }
 
 	    private Key getSignKey() {
-	        byte[] keyBytes= Decoders.BASE64.decode(SECRET);
+	        byte[] keyBytes= Decoders.BASE64.decode(secret);
 	        return Keys.hmacShaKeyFor(keyBytes);
 	    }
 

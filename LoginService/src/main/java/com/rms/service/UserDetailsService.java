@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.rms.CONSTANTS;
 import com.rms.dtos.LoginRequest;
@@ -20,7 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Service
 public class UserDetailsService {
 	
-	private static final Logger logger = Logger.getLogger(UserDetailsService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
 	private final PasswordEncoder passwordEncoder;
 	private final EmailService emailService;
     private final UserDetailsRepository userDetailsRepository;
@@ -161,7 +162,7 @@ public class UserDetailsService {
                 .message("User Logged in Successfully")
                 .role(user.getRole())
                 .token(token)
-                .expirationTime("6 months")
+                .expirationTime("30 minutes")
                 .isActive(user.isActive())
                 .isFirstLogin(user.isFirstLogin())
                 .userId(user.getUserid())

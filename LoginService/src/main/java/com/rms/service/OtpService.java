@@ -1,7 +1,8 @@
 package com.rms.service;
 
 import org.springframework.stereotype.Service;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class OtpService {
     private final Map<String, String> otpStorage = new HashMap<>();
     private static final Random random = new SecureRandom();
     
-    private static final Logger logger = Logger.getLogger(OtpService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
 
     /**
      * Generates and stores a 6-digit OTP for the given username.

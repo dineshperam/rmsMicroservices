@@ -8,24 +8,26 @@ import com.rms.repository.UserDetailsRepository;
 
 import jakarta.transaction.Transactional;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContactFormService {
 
-    private static final Logger logger = Logger.getLogger(ContactFormService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
     private ContactFormRepository contactFormRepository;
     private EmailService emailService;
     private UserDetailsRepository userDetailsRepository;
     private PasswordEncoder passwordEncoder;
 
-    private static final Random RANDOM = new Random();
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     public ContactFormService(
         ContactFormRepository contactFormRepository,

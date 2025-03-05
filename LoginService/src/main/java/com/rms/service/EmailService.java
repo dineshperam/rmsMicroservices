@@ -3,7 +3,8 @@ package com.rms.service;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import com.rms.exeptions.NotFoundException;
 @Service
 public class EmailService {
 
-    private static final Logger logger = Logger.getLogger(EmailService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
     private final JavaMailSender mailSender;
 
     public EmailService(JavaMailSender mailSender) {
@@ -60,6 +61,9 @@ public class EmailService {
 
 
     public void sendWelcomeEmail(String to, String firstname, String username, String role, String email, String password) {
+    	if (to == null || to.trim().isEmpty()) {
+            throw new NotFoundException("Recipient email is required");
+        }
         logger.info("Sending welcome email to: " + to);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
